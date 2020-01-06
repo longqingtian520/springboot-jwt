@@ -22,6 +22,7 @@ public class JwtTokenUtil {
 
     /**
      * 解析jwt
+     *
      * @param jsonWebToken
      * @param base64Security
      * @return
@@ -35,7 +36,7 @@ public class JwtTokenUtil {
         } catch (ExpiredJwtException eje) {
             log.error("===== Token过期 =====", eje);
             throw new CustomException(ResultCode.PERMISSION_TOKEN_EXPIRED);
-        } catch (Exception e){
+        } catch (Exception e) {
             log.error("===== token解析异常 =====", e);
             throw new CustomException(ResultCode.PERMISSION_TOKEN_INVALID);
         }
@@ -43,6 +44,7 @@ public class JwtTokenUtil {
 
     /**
      * 构建jwt
+     *
      * @param userId
      * @param username
      * @param role
@@ -75,9 +77,9 @@ public class JwtTokenUtil {
                     .setAudience(audience.getName())          // 代表这个JWT的接收对象；
                     .signWith(signatureAlgorithm, signingKey);
             //添加Token过期时间
-            int TTLMillis = audience.getExpiresSecond();
-            if (TTLMillis >= 0) {
-                long expMillis = nowMillis + TTLMillis;
+            int TTLSecond = audience.getExpiresSecond();
+            if (TTLSecond >= 0) {
+                long expMillis = nowMillis + TTLSecond * 1000;
                 Date exp = new Date(expMillis);
                 builder.setExpiration(exp)  // 是一个时间戳，代表这个JWT的过期时间；
                         .setNotBefore(now); // 是一个时间戳，代表这个JWT生效的开始时间，意味着在这个时间之前验证JWT是会失败的
@@ -93,27 +95,30 @@ public class JwtTokenUtil {
 
     /**
      * 从token中获取用户名
+     *
      * @param token
      * @param base64Security
      * @return
      */
-    public static String getUsername(String token, String base64Security){
+    public static String getUsername(String token, String base64Security) {
         return parseJWT(token, base64Security).getSubject();
     }
 
     /**
      * 从token中获取用户ID
+     *
      * @param token
      * @param base64Security
      * @return
      */
-    public static String getUserId(String token, String base64Security){
+    public static String getUserId(String token, String base64Security) {
         String userId = parseJWT(token, base64Security).get("userId", String.class);
         return Base64Util.decode(userId);
     }
 
     /**
      * 是否已过期
+     *
      * @param token
      * @param base64Security
      * @return

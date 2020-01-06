@@ -1,11 +1,12 @@
 
-##jwtÅäÖÃ
+
+##jwté…ç½®
 audience:
-  # ´ú±íÕâ¸öJWTµÄ½ÓÊÕ¶ÔÏó,´æÈëaudience
+  # ä»£è¡¨è¿™ä¸ªJWTçš„æ¥æ”¶å¯¹è±¡,å­˜å…¥audience
   clientId: 098f6bcd4621d373cade4e832627b4f6
-  # ÃÜÔ¿, ¾­¹ıBase64¼ÓÃÜ, ¿É×ÔĞĞÌæ»»
+  # å¯†é’¥, ç»è¿‡Base64åŠ å¯†, å¯è‡ªè¡Œæ›¿æ¢
   base64Secret: MDk4ZjZiY2Q0NjIxZDM3M2NhZGU0ZTgzMjYyN2I0ZjY=
-  # JWTµÄÇ©·¢Ö÷Ìå£¬´æÈëissuer
+  # JWTçš„ç­¾å‘ä¸»ä½“ï¼Œå­˜å…¥issuer
   name: restapiuser
-  # ¹ıÆÚÊ±¼ä£¬Ê±¼ä´Á
+  # è¿‡æœŸæ—¶é—´ï¼Œæ—¶é—´æˆ³
   expiresSecond: 172800
