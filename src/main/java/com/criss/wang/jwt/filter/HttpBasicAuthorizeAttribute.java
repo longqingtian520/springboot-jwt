@@ -1,9 +1,10 @@
-package com.criss.wang.jwt.interceptor;
+package com.criss.wang.jwt.filter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.core.annotation.Order;
 import sun.misc.BASE64Decoder;
-
 import javax.servlet.*;
+import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -11,6 +12,8 @@ import java.io.IOException;
 /**
  * 加一个http basic认证
  */
+@Order(1)
+@WebFilter(urlPatterns = "/*",filterName = "HttpBasicAuthorizeAttribute")
 public class HttpBasicAuthorizeAttribute implements Filter {
 
     private static String NAME = "test";

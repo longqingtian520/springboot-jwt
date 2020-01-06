@@ -1,6 +1,7 @@
 package com.criss.wang.jwt.config;
 
-import com.criss.wang.jwt.interceptor.HttpBasicAuthorizeAttribute;
+import com.criss.wang.jwt.filter.CROSFilter;
+import com.criss.wang.jwt.filter.HttpBasicAuthorizeAttribute;
 import com.criss.wang.jwt.interceptor.JwtInterceptor;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -37,16 +38,15 @@ public class WebConfig implements WebMvcConfigurer {
                 .maxAge(3600 * 24);
     }
 
-    @Bean
-    public FilterRegistrationBean filterRegistrationBean() {
-        FilterRegistrationBean registrationBean = new FilterRegistrationBean();
-        HttpBasicAuthorizeAttribute httpBasicFilter = new HttpBasicAuthorizeAttribute();
-        registrationBean.setFilter(httpBasicFilter);
-        List<String> urlPatterns = new ArrayList<>();
-        urlPatterns.add("/*");
-        registrationBean.setUrlPatterns(urlPatterns);
-        return registrationBean;
-
-    }
+//    @Bean
+//    public FilterRegistrationBean filterRegistrationBean() {
+//        FilterRegistrationBean registrationBean = new FilterRegistrationBean();
+//        HttpBasicAuthorizeAttribute httpBasicFilter = new HttpBasicAuthorizeAttribute();
+//        registrationBean.setFilter(httpBasicFilter);
+//        List<String> urlPatterns = new ArrayList<>();
+//        urlPatterns.add("/*");
+//        registrationBean.setUrlPatterns(urlPatterns);
+//        return registrationBean;
+//    }
 
 }
